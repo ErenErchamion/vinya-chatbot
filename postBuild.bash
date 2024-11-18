@@ -29,6 +29,9 @@ sudo -E chown workbench:workbench /data
 sudo -E curl -s https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh | sudo -E bash
 sudo -E apt-get install git-lfs
 
+sudo rm /opt/conda/lib/libcurl.so.4
+sudo ln -s /usr/lib/x86_64-linux-gnu/libcurl.so.4.6.0 /usr/local/lib/libcurl.so.4
+
 cat <<EOM | sudo tee /etc/profile.d/docker-in-docker.sh > /dev/null
 if ! groups workbench | grep docker > /dev/null; then
     docker_gid=\$(stat -c %g /var/host-run/docker.sock)
